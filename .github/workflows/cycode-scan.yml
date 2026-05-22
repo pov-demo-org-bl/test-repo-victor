@@ -23,12 +23,15 @@ jobs:
     # Pinned by SHA for reproducibility. To upgrade: bump to a newer
     # commit on levine-cycode/cycode-github-actions-examples (or a tag
     # once one is cut, e.g. @v1).
-    uses: levine-cycode/cycode-github-actions-examples/.github/workflows/cycode-scan.yml@02f945e4eccc61ef802b122cfb110c6dbd3d897e
+    uses: levine-cycode/cycode-github-actions-examples/.github/workflows/cycode-scan.yml@9be55bebd5dabae838ef3ee0765c853db8ed1007
     with:
       scanTypes: '["secret","sca","iac","sast"]'
       severityThreshold: high
       blockOnFindings: true
       scanMode: 'full'
+      # Output formats included in the cycode-scan-results artifact.
+      # Subset of: json (always included), csv, md, html.
+      outputFormats: '["json","csv","md","html"]'
     secrets:
       CYCODE_CLIENT_ID: ${{ secrets.CYCODE_CLIENT_ID }}
       CYCODE_CLIENT_SECRET: ${{ secrets.CYCODE_CLIENT_SECRET }}
