@@ -1,0 +1,34 @@
+# Cycode release-gate scan.
+#
+# Calls the centralized Cycode scan reusable workflow whenever a commit lands
+# on a release branch. Forces a full-tree scan (release-gate semantics — gate
+# the entire release contents, not just the latest diff) and blocks the build
+# on any finding at or above the configured severity.
+#
+# Day-to-day PRs are covered separately by Cycode native PR scans; this
+# workflow exists for the moment of release.
+
+name: Cycode release gate
+
+on:
+  push:
+    branches:
+      - release
+      - 'release/**'
+      - 'release-*'
+  workflow_dispatch:
+
+jobs:
+  cycode:
+    # Pinned by SHA for reproducibility. To upgrade: bump to a newer
+    # commit on levine-cycode/cycode-github-actions-examples (or a tag
+    # once one is cut, e.g. @v1).
+    uses: levine-cycode/cycode-github-actions-examples/.github/workflows/cycode-scan.yml@02f945e4eccc61ef802b122cfb110c6dbd3d897e
+    with:
+      scanTypes: '["secret","sca","iac","sast"]'
+      severityThreshold: high
+      blockOnFindings: true
+      scanMode: 'full'
+    secrets:
+      CYCODE_CLIENT_ID: ${{ secrets.CYCODE_CLIENT_ID }}
+      CYCODE_CLIENT_SECRET: ${{ secrets.CYCODE_CLIENT_SECRET }}
