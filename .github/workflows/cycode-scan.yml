@@ -28,4 +28,6 @@ jobs:
       severityThreshold: high
       blockOnFindings: true
       scanMode: 'full'
-    secrets: inherit
+    secrets:
+      CYCODE_CLIENT_ID: ${{ secrets.CYCODE_CLIENT_ID }}
+      CYCODE_CLIENT_SECRET: ${{ secrets.CYCODE_CLIENT_SECRET }}
