@@ -23,7 +23,7 @@ jobs:
     # Pinned by SHA for reproducibility. To upgrade: bump to a newer
     # commit on levine-cycode/cycode-github-actions-examples (or a tag
     # once one is cut, e.g. @v1).
-    uses: levine-cycode/cycode-github-actions-examples/.github/workflows/cycode-scan.yml@c8e2adf5dfd577e44bcd90f8eae227c7c847eb2b
+    uses: levine-cycode/cycode-github-actions-examples/.github/workflows/cycode-scan.yml@bc0c5fde4beab225b176317e12d3dd3206b85420
     with:
       scanTypes: '["secret","sca","iac","sast"]'
       severityThreshold: high
