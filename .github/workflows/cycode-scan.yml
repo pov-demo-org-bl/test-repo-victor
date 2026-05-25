@@ -21,9 +21,9 @@ on:
 jobs:
   cycode:
     # Pinned by SHA for reproducibility. To upgrade: bump to a newer
-    # commit on levine-cycode/cycode-github-actions-examples (or a tag
-    # once one is cut, e.g. @v1).
-    uses: levine-cycode/cycode-github-actions-examples/.github/workflows/cycode-scan.yml@9be55bebd5dabae838ef3ee0765c853db8ed1007
+    # commit on pov-demo-org-bl/cycode-templates (or a tag once one is
+    # cut, e.g. @v1).
+    uses: pov-demo-org-bl/cycode-templates/.github/workflows/cycode-scan.yml@431aabf0507b7b8f79f67dcbbd24e00b7442cc4a
     with:
       scanTypes: '["secret","sca","iac","sast"]'
       severityThreshold: high
